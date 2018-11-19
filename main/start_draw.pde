@@ -22,8 +22,8 @@ void draw_start(){
 		background(255);
 		textSize(50);
 		fill(0);
-		text("Troll",200,200);
-		text("Adventure",300,350);
+		text("Troll",150,200);
+		text("Adventure",250,350);
 		strokeWeight(5);
 		fill(255);
 		ellipse(600, 550, 200, 200);
