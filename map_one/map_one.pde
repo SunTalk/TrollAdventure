@@ -1,11 +1,16 @@
 import shiffman.box2d.*;
+import org.jbox2d.common.*;
+import org.jbox2d.dynamics.joints.*;
 import org.jbox2d.collision.shapes.*;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.contacts.*;
 
 Box2DProcessing box2d;
 
 ArrayList<Boundary> boundaries;
+ArrayList<Windmill> windmills;
 Ball protagonist;
 
 boolean l=true, r=false ,jump=false;
@@ -22,10 +27,10 @@ void setup(){
 	box2d.setGravity(0,-100);
 
 	boundaries = new ArrayList<Boundary>();
+	windmills = new ArrayList<Windmill>(); 
+	map_one_object();
 
-	map_one_boundary();
-
-	protagonist = new Ball(300,720,25);
+	protagonist = new Ball(1100,300,25);//150,720
 	now_x = now_y = 0;
 }
 
@@ -80,9 +85,14 @@ void draw(){
 		setup();
 	}
 
+	for(Windmill wind: windmills){
+		wind.display();
+	}
+
 	for(Boundary wall: boundaries){
 		wall.display();
 	}
+
 
 	protagonist.display();
 
