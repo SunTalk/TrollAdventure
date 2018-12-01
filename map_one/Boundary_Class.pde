@@ -41,8 +41,11 @@ class Boundary {
 
 	// Draw the boundary, it doesn't move so we don't have to ask the Body for location
 	void display() {
-		if( visible ){	
-			fill(182);
+		if( visible ){
+			if(restitution<1)	
+				fill(182);
+			else
+				fill(0,0,255);
 			stroke(0);
 			strokeWeight(5);
 			rectMode(CENTER);

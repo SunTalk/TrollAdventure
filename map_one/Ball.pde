@@ -69,6 +69,14 @@ class Ball {
 		ellipse(0,0,r*2,r*2);
 		// Let's add a line so we can see the rotation
 		// line(0,0,r,0);
+		fill(255);
+		ellipse(r/2,-8,r/2,r/2);
+		ellipse(-r/2,-8,r/2,r/2);
+		fill(0);
+		ellipse(r/2,-8,r/5,r/5);
+		ellipse(-r/2,-8,r/5,r/5);
+		fill(255,0,0);
+		ellipse(-8,3,r/2,r/5);
 		popMatrix();
 	}
 

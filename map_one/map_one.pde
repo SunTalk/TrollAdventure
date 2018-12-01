@@ -23,16 +23,7 @@ void setup(){
 
 	boundaries = new ArrayList<Boundary>();
 
-	boundaries.add(new Boundary(-1210,450,10,900,0,0,true) );//left and left
-	boundaries.add(new Boundary(-10,700,10,100,0,0,true) );
-	boundaries.add(new Boundary(3610,450,10,900,0,5,true) );//right
-	boundaries.add(new Boundary(600,-10,1200,10,0,10,true) );//top
-	//flood
-	boundaries.add(new Boundary(100,890,800,300,0,0,true) );
-	boundaries.add(new Boundary(1100,900,800,300,0,0,true) );
-	//wall
-	// boundaries.add(new Boundary(700,640,120,10,0,0,false) );
-	// boundaries.add(new Boundary(500,640,120,10,0,0,false) );
+	map_one_boundary();
 
 	protagonist = new Ball(300,720,25);
 	now_x = now_y = 0;
@@ -55,13 +46,16 @@ void draw(){
 	if( (pos.x-now_x) > 600 ){
 		now_x = -(pos.x-600);
 	}
+	if( now_x < -2400 ){
+		now_x = -2400;
+	}
 
 	translate(now_x,now_y);
 
 	// fill(0);
 	// textSize(20);
-	// text(pos.x,600,200);
-	// text(now_x,600,300);
+	// text(pos.x,1000,200);
+	// text(now_x,1000,300);
 
 	if( keyPressed == true ){
 		if( keyCode == RIGHT ){
