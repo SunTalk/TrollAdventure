@@ -10,7 +10,7 @@ void map_one_boundary(){
 	boundaries.add(new Boundary(600,-10,1200,10,0,10,true) );
 	//flood
 	boundaries.add(new Boundary(100,890,800,300,0,-1,true) );
-	boundaries.add(new Boundary(1100,900,800,300,0,-1,true) );
+	boundaries.add(new Boundary(900,900,400,300,0,-1,true) );
 	boundaries.add(new Boundary(2700,900,2000,300,0,-1,true) );
 	//wall
 	boundaries.add(new Boundary(700,640,120,10,0,0,false) );

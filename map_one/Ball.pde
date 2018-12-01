@@ -77,6 +77,7 @@ class Ball {
 		ellipse(-r/2,-8,r/5,r/5);
 		fill(255,0,0);
 		ellipse(-8,3,r/2,r/5);
+
 		popMatrix();
 	}
 
@@ -98,7 +99,7 @@ class Ball {
 		// Parameters that affect physics
 		fd.density = 1;
 		fd.friction = 0.01;
-		fd.restitution = 0.3;
+		fd.restitution = 0;
 		
 		// Attach fixture to body
 		body.createFixture(fd);
