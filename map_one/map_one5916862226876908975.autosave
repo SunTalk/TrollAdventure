@@ -9,7 +9,6 @@ ArrayList<Boundary> boundaries;
 Ball protagonist;
 
 boolean l=false, r=false ,jump=false;
-int testnum;
 
 void setup(){
 	size(1200,900);
@@ -38,7 +37,7 @@ void draw(){
 	}
 
 	protagonist.display();
-	
+
 	// protagonist.action(1,0);
 	// if( l == true ){
 	// 	protagonist.move = true;
@@ -50,59 +49,43 @@ void draw(){
 	// }
 	// if( jump == true ){
 	// 	protagonist.move = true;
-	// 	protagonist.action(0,100);
+	// 	protagonist.action(0,1);
 	// }
 
-	// if( keyPressed == true ){
-	// 	if( keyCode == RIGHT )
-	// 		protagonist.action(1,0);
-	// 	if( keyCode == LEFT )
-	// 		protagonist.action(-1,0);
-	// 	if( key == ' ' )
-	// 		protagonist.action(0,100);
-	// }
+	if( keyPressed == true ){
+		if( keyCode == RIGHT )
+			protagonist.action(1,0);
+		if( keyCode == LEFT )
+			protagonist.action(-1,0);
+		if( key == ' ' )
+			protagonist.action(0,10);
+	}
 
 
-	// if( mousePressed == true ){
-	// 	if( mouseButton == RIGHT )
-	// 		protagonist.action(1,0);
-	// 	if(mouseButton == LEFT)
-	// 		protagonist.action(-1,0);
-	// }
+	if( mousePressed == true ){
+		if( mouseButton == RIGHT )
+			protagonist.action(1,0);
+		if(mouseButton == LEFT)
+			protagonist.action(-1,0);
+	}
 
-	fill(0);
-	textSize(50);
-	if( l == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 500,300);
-	if( r == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 700,300 );
-	if( jump == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 600,200 );
+
 }
 
 
-void KeyPressed(){
-	
-	// if( key == 'a' ){
-	// 	l = true;
-	// }
-	// else if( key == 'd' ){
-	// 	r = true;
-	// }
-	// else if( key == ' ' ){
-		jump = true;
-	// }
+// void KeyPressed(){
+// 	if( keyPressed == true ){
+// 		if( key == 'a' ){
+// 			l = true;
+// 			protagonist.action(-1,0);
+// 		}
+// 		if( key == 'd' )
+// 			r = true;
+// 		if( key == ' ' )
+// 			jump = true;
+// 	}
 		
-}
+// }
 
 // void KeyReleased(){
 // 	if( key == 'a' )
