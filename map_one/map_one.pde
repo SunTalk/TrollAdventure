@@ -8,7 +8,7 @@ Box2DProcessing box2d;
 ArrayList<Boundary> boundaries;
 Ball protagonist;
 
-boolean l=false, r=false ,jump=false;
+boolean l=true, r=false ,jump=false;
 int testnum;
 
 void setup(){
@@ -17,14 +17,21 @@ void setup(){
 
 	box2d = new Box2DProcessing(this);
 	box2d.createWorld();
-	box2d.setGravity(0,-20);
+	box2d.setGravity(0,-100);
 
 	boundaries = new ArrayList<Boundary>();
-	boundaries.add(new Boundary(100,900,800,300,0));
-	boundaries.add(new Boundary(1100,900,800,300,0));
 
-	protagonist = new Ball(300,725,25);
+	boundaries.add(new Boundary(-10,450,10,900,0,0,false) );//left
+	boundaries.add(new Boundary(1210,450,10,900,0,5,false) );//right
+	boundaries.add(new Boundary(600,-10,1200,10,0,10,false) );//top
+	//flood
+	boundaries.add(new Boundary(100,890,800,300,0,0,true) );
+	boundaries.add(new Boundary(1100,900,800,300,0,0,true) );
+	//wall
+	boundaries.add(new Boundary(700,640,120,10,0,0,false) );
+	boundaries.add(new Boundary(500,640,120,10,0,0,false) );
 
+	protagonist = new Ball(300,720,25);
 
 }
 
@@ -38,59 +45,33 @@ void draw(){
 	}
 
 	protagonist.display();
-	
-	// protagonist.action(1,0);
-	// if( l == true ){
-	// 	protagonist.move = true;
-	// 	protagonist.action(-1,0);
-	// }
-	// if( r == true ){
-	// 	protagonist.move = true;
-	// 	protagonist.action(1,0);
-	// }
-	// if( jump == true ){
-	// 	protagonist.move = true;
-	// 	protagonist.action(0,100);
-	// }
 
-	// if( keyPressed == true ){
-	// 	if( keyCode == RIGHT )
-	// 		protagonist.action(1,0);
-	// 	if( keyCode == LEFT )
-	// 		protagonist.action(-1,0);
-	// 	if( key == ' ' )
-	// 		protagonist.action(0,100);
-	// }
+	if( keyPressed == true ){
+		if( keyCode == RIGHT ){
+			protagonist.move = true;
+			protagonist.action(15);
+		}
+		if( keyCode == LEFT ){
+			protagonist.move = true;
+			protagonist.action(-15);
+		}
+		if( key == ' ' ){
+			if( millis()-protagonist.njtime > 1300 ){
+				protagonist.jmp = true;
+			}
+			protagonist.jump();
+		}
+		
+	}
 
+	if( protagonist.reStart() ){
+		setup();
+	}
 
-	// if( mousePressed == true ){
-	// 	if( mouseButton == RIGHT )
-	// 		protagonist.action(1,0);
-	// 	if(mouseButton == LEFT)
-	// 		protagonist.action(-1,0);
-	// }
-
-	fill(0);
-	textSize(50);
-	if( l == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 500,300);
-	if( r == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 700,300 );
-	if( jump == true )
-		testnum = 10;
-	else
-		testnum = 0;
-	text( testnum , 600,200 );
 }
 
 
-void KeyPressed(){
+void KeyPressed() {
 	
 	// if( key == 'a' ){
 	// 	l = true;
@@ -98,10 +79,16 @@ void KeyPressed(){
 	// else if( key == 'd' ){
 	// 	r = true;
 	// }
-	// else if( key == ' ' ){
+	if( key == ' ' ){
 		jump = true;
-	// }
+	}
 		
+}
+
+void MousePressed() {
+	
+	if( mouseButton == LEFT )
+		jump = true;
 }
 
 // void KeyReleased(){

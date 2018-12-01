@@ -4,6 +4,8 @@ class Ball {
 	Body body;
 	float r;
 	boolean move = false;
+	boolean jmp = false;
+	float njtime = -1000;
 
 	Ball(float x, float y, float r_) {
 		r = r_;
@@ -16,11 +18,28 @@ class Ball {
 		box2d.destroyBody(body);
 	}
 
-	void action(float x, float y){
-		// if( move == true ){
-			body.applyLinearImpulse(new Vec2(x,y),body.getPosition(),false);
-		// 	move = false;
-		// }
+	boolean reStart(){
+		Vec2 pos = box2d.getBodyPixelCoord(body);
+		if( pos.y > 950 ){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	void action(float x){
+		if( move == true ){
+			body.applyLinearImpulse(new Vec2(x,0),body.getPosition(),true);
+			move = false;
+		}
+	}
+	void jump(){
+		if( jmp == true ){
+			body.applyLinearImpulse(new Vec2(0,1000),body.getPosition(),true);
+			njtime = millis();
+			jmp = false;
+		}
 	}
 
 	// Is the Ball ready for deletion?
@@ -49,7 +68,7 @@ class Ball {
 		strokeWeight(1);
 		ellipse(0,0,r*2,r*2);
 		// Let's add a line so we can see the rotation
-		line(0,0,r,0);
+		// line(0,0,r,0);
 		popMatrix();
 	}
 
