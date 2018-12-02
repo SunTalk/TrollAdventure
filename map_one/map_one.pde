@@ -17,6 +17,7 @@ boolean l=true, r=false ,jump=false;
 int testnum;
 
 float now_x,now_y;
+Vec2 pos;
 
 void setup(){
 	size(1200,900);
@@ -30,16 +31,18 @@ void setup(){
 	windmills = new ArrayList<Windmill>(); 
 	map_one_object();
 
-	protagonist = new Ball(1100,300,25);//150,720
+	protagonist = new Ball(150,720,25);//150,720
 	now_x = now_y = 0;
 }
+
+
 
 void draw(){
 	background(255);
 
 	box2d.step();
 
-	Vec2 pos = box2d.getBodyPixelCoord( protagonist.body);
+	pos = box2d.getBodyPixelCoord( protagonist.body);
 	
 	
 	if( pos.x > 0 ){
@@ -93,6 +96,7 @@ void draw(){
 		wall.display();
 	}
 
+	trap_one();
 
 	protagonist.display();
 

@@ -7,18 +7,20 @@ void map_one_object(){
 	//right
 	boundaries.add(new Boundary(3610,450,10,900,0,5,true) );
 	//top
-	boundaries.add(new Boundary(1200,-10,5000,10,0,5,true) );
+	boundaries.add(new Boundary(1200,-10,5000,10,0,0,true) );
 	//flood
 	boundaries.add(new Boundary(0,900,800,300,0,0,true) );
 	boundaries.add(new Boundary(800,900,400,300,0,0,true) );
 	boundaries.add(new Boundary(2400,900,2200,100,0,0,true) );
 	//invisible
-	boolean test = true;
+	boolean test = false;
 	boundaries.add(new Boundary(400,640,120,10,0,0,test) );
 	boundaries.add(new Boundary(600,640,120,10,0,0,test) );
 	boundaries.add(new Boundary(840,550,150,10,0,0,test) );
-	boundaries.add(new Boundary(1200,500,300,10,0,0,test) );
 	//visible
+	boundaries.add(new Boundary(1200,500,300,10,0,0,true) );
+	boundaries.add(new Boundary(400,400,800,10,0,0,true) );
+	//for windmills
 	boundaries.add(new Boundary(2000,400,1000,10,0,5,true) );
 	boundaries.add(new Boundary(2000,800,1000,10,0,5,true) );
 	boundaries.add(new Boundary(2650,600,10,300,0,5,true) );
@@ -62,4 +64,25 @@ void map_one_object(){
 	windmills.add(new Windmill(2500,300,70,10,5000) );
 }
 
+void trap_one(){
+	if( pos.x < 350 || pos.x > 650 || pos.y < 400 ){
+		noStroke();
+		fill(182);
+		rect(500,900,300,300);
+		fill(0);
+		stroke(1);
+		line(300,750,700,750);
+	}
 
+	if( pos.x < 750 || pos.x > 850 || pos.y > 400 ){
+		fill(182);
+		rect(800,200,10,410);
+		noStroke();
+		rect(795,400,10,10);
+		stroke(1);
+		fill(0);
+		line(780,405,805,405);
+		line(795,395,770,395);
+	}
+
+}
