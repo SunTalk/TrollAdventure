@@ -10,7 +10,7 @@ class Ball {
 	Ball(float x, float y, float r_) {
 		r = r_;
 		// This function puts the Ball in the Box2d world
-		makeBody(x,y,r);
+		makeBody(x,y,r,0);
 	}
 
 	// This function removes the Ball from the box2d world
@@ -32,9 +32,9 @@ class Ball {
 		}
 	}
 	void tp(float x, float y){
+		float a = body.getAngle();
 		killBody();
-		makeBody(x,y,25);
-		body.applyLinearImpulse(new Vec2(15,0),body.getPosition(),true);
+		makeBody(x,y,25,a);
 	}
 
 	// Is the Ball ready for deletion?
@@ -77,12 +77,13 @@ class Ball {
 	}
 
 	// Here's our function that adds the Ball to the Box2D world
-	void makeBody(float x, float y, float r) {
+	void makeBody(float x, float y, float r, float a) {
 		// Define a body
 		BodyDef bd = new BodyDef();
 		// Set its position
 		bd.position = box2d.coordPixelsToWorld(x,y);
 		bd.type = BodyType.DYNAMIC;
+		bd.angle = a;
 		body = box2d.world.createBody(bd);
 
 		// Make the body's shape a circle
