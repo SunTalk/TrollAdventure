@@ -37,6 +37,9 @@ void draw()
 
 	Vec2 pos = box2d.getBodyPixelCoord(ooxx.body);
 	
+	text("x: " + pos.x, pos.x + 25, pos.y-25);
+	text("y: " + pos.y, pos.x + 25, pos.y-10);
+	
 	
 	if( pos.x > 0 )
 		_x = 0;
@@ -78,8 +81,8 @@ void draw()
 	}
 
 	// reborn
-	// if(ooxx.reStart())
-	// 	setup();
+	if(ooxx.reStart())
+		setup();
 
 	for(Boundary wall: boundaries)
 		wall.display();
