@@ -35,8 +35,13 @@ class Boundary {
 		b = box2d.createBody(bd);
 		FixtureDef fd = new FixtureDef();
 		fd.shape=sd;
+		fd.friction = 10000;
 		fd.restitution=restitution;
 		b.createFixture(fd);
+	}
+
+	void vis(){
+		visible = true;
 	}
 
 	// Draw the boundary, it doesn't move so we don't have to ask the Body for location

@@ -16,8 +16,8 @@ class Windmill {
 	Windmill(float x, float y, float len , float sp, float pw) {
 
 		// Initialize locations of two boxes
-		box1 = new Box(x, y, len, 10, false); 
-		box2 = new Box(x, y, 1, 1, true); 
+		box1 = new Box(x, y, len, 10, false,10); 
+		box2 = new Box(x, y, 1, 1, true,1); 
 
 		// Define joint as between two bodies
 		RevoluteJointDef rjd = new RevoluteJointDef();

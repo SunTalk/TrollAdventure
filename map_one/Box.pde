@@ -13,7 +13,7 @@ class Box {
 	float h;
 
 	// Constructor
-	Box(float x, float y, float w_, float h_, boolean lock) {
+	Box(float x, float y, float w_, float h_, boolean lock, float d_ ) {
 		w = w_;
 		h = h_;
 		
@@ -35,7 +35,7 @@ class Box {
 		FixtureDef fd = new FixtureDef();
 		fd.shape = sd;
 		// Parameters that affect physics
-		fd.density = 1;
+		fd.density = d_;
 		fd.friction = 0.3;
 		fd.restitution = 0.5;
 
@@ -68,5 +68,3 @@ class Box {
 		popMatrix();
 	}
 }
-
-

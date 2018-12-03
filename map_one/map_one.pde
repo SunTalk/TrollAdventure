@@ -75,13 +75,20 @@ void draw(){
 			protagonist.move = true;
 			protagonist.action(-15);
 		}
-		if( key == ' ' ){
+		if( keyCode == UP || key == ' ' ){
 			if( millis()-protagonist.njtime > 1300 ){
 				protagonist.jmp = true;
 			}
-			protagonist.jump();
+			protagonist.jump(1000);
+		}
+		if( key == 's' || key == 'S' ){
+			protagonist.tp(pos.x,pos.y);
 		}
 		
+	}
+	else{
+		protagonist.move = false;
+		protagonist.action(0);
 	}
 
 	if( protagonist.reStart() ){
@@ -99,7 +106,39 @@ void draw(){
 	trap_one();
 
 	protagonist.display();
+	if( pos.x > 3600 )
+		protagonist.tp(30,570);
 
+}
+
+// Collision event functions!
+void beginContact(Contact cp) {
+	// Get both fixtures
+	Fixture f1 = cp.getFixtureA();
+	Fixture f2 = cp.getFixtureB();
+	// Get both bodies
+	Body b1 = f1.getBody();
+	Body b2 = f2.getBody();
+	// Get our objects that reference these bodies
+	Object o1 = b1.getUserData();
+	Object o2 = b2.getUserData();
+
+	// If object 1 is a Box, then object 2 must be a particle
+	// Note we are ignoring particle on particle collisions
+	if ( o1.getClass() == Ball.class && o2.getClass() == Boundary.class ) {
+		Boundary p = (Boundary) o2;
+		p.vis();
+	} 
+	// If object 2 is a Box, then object 1 must be a particle
+	if ( o2.getClass() == Ball.class && o1.getClass() == Boundary.class ) {
+		Boundary p = (Boundary) o1;
+		p.vis();
+	}
+}
+
+
+// Objects stop touching each other
+void endContact(Contact cp) {
 }
 
 

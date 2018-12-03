@@ -18,32 +18,27 @@ class Ball {
 		box2d.destroyBody(body);
 	}
 
-	boolean reStart(){
-		Vec2 pos = box2d.getBodyPixelCoord(body);
-		if( pos.y > 950 ){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-
 	void action(float x){
 		if( move == true ){
 			body.applyLinearImpulse(new Vec2(x,0),body.getPosition(),true);
 			move = false;
 		}
 	}
-	void jump(){
+	void jump(float y){
 		if( jmp == true ){
-			body.applyLinearImpulse(new Vec2(0,1000),body.getPosition(),true);
+			body.applyLinearImpulse(new Vec2(0,y),body.getPosition(),true);
 			njtime = millis();
 			jmp = false;
 		}
 	}
+	void tp(float x, float y){
+		killBody();
+		makeBody(x,y,25);
+		body.applyLinearImpulse(new Vec2(15,0),body.getPosition(),true);
+	}
 
 	// Is the Ball ready for deletion?
-	boolean done() {
+	boolean reStart() {
 		// Let's find the screen position of the Ball
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 		// Is it off the bottom of the screen?
@@ -97,8 +92,9 @@ class Ball {
 		FixtureDef fd = new FixtureDef();
 		fd.shape = cs;
 		// Parameters that affect physics
+		
 		fd.density = 1;
-		fd.friction = 0.01;
+		fd.friction = 10000;
 		fd.restitution = 0;
 		
 		// Attach fixture to body
