@@ -24,8 +24,13 @@ class Ball
 	{
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 
-		if( pos.y > 950 )
-			return true;
+		if(pos.x > 1600 || pos.x < 1100)
+		{
+			if( pos.y > 950 )
+				return true;
+			else
+				return false;
+		}
 		else
 			return false;
 	}
