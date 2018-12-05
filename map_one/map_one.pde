@@ -19,6 +19,8 @@ int testnum;
 float now_x,now_y;
 Vec2 pos;
 
+float jp_time,sp_time;
+
 void setup(){
 	size(1200,900);
 	smooth();
@@ -71,12 +73,15 @@ void draw(){
 			protagonist.action(-15);
 		}
 		if( keyCode == UP || key == ' ' ){
-			if( millis()-protagonist.njtime > 1300 ){
+			if( millis()-protagonist.njtime > 1500 ){
 				protagonist.jmp = true;
 			}
 			protagonist.jump(1000);
 		}
 		if( key == 's' || key == 'S' ){
+			if( millis()-protagonist.nstime > 3000 ){
+				protagonist.stp = true;
+			}
 			ContactEdge stop = protagonist.body.getContactList();
 			for(;stop!=null;stop=stop.next)
 				protagonist.tp(pos.x,pos.y);
@@ -107,7 +112,25 @@ void draw(){
 	trap_one();
 
 	protagonist.display();
-	if( pos.x > 3600 )
+	if( pos.x > 3600 ){
+		protagonist.stp = true;
 		protagonist.tp(30,570);
+	}
+
+	jp_time = 1500 - millis() + protagonist.njtime;
+	if( jp_time < 0 )
+		jp_time = 0;
+	jp_time = jp_time/1000;
+
+	sp_time = 3000 - millis() + protagonist.nstime;
+	if( sp_time < 0 )
+		sp_time = 0;
+	sp_time = sp_time/1000;
+
+	textSize(40);
+	fill(0);
+	text("Jump : " + jp_time, -now_x+10 , 850);
+	text("Stop : " + sp_time, -now_x+10 , 890);
+
 
 }
