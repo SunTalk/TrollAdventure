@@ -15,6 +15,8 @@ boolean l=true, r=false ,jump=false;
 
 float _x, _y;
 
+int diedCount = 0;
+
 void setup()
 {
 	size(1200, 900);
@@ -40,9 +42,6 @@ void draw()
 
 	Vec2 pos = box2d.getBodyPixelCoord(ooxx.body);
 	
-	text("x: " + pos.x, pos.x + 25, pos.y-25);
-	text("y: " + pos.y, pos.x + 25, pos.y-10);
-	
 	if(pos.x > 3600)
 		ooxx.teleport(5, 724);
 	else if(pos.x < 0)
@@ -67,6 +66,10 @@ void draw()
 
 	translate(_x,_y);
 
+	fill(0);
+	textSize(100);
+	text("You Died " + diedCount + " Times!", 10, 400);
+
 	if( keyPressed == true )
 	{
 		if( keyCode == RIGHT )
@@ -90,8 +93,11 @@ void draw()
 	}
 
 	// reborn
-	// if(ooxx.reStart())
-	// 	setup();
+	if(ooxx.reStart())
+	{
+		diedCount++;
+		setup();
+	}
 
 	for(Boundary wall: boundaries)
 		wall.display();

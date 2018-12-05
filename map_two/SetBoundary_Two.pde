@@ -23,4 +23,5 @@ void map_two_boundary()
 	boundaries.add(new Boundary(0, 1600, 800, 10, 0, -1, true));
 	boundaries.add(new Boundary(750, 1400, 200, 10, 0, -1, true));
 	boundaries.add(new Boundary(1500, 1800, 1000, 600, 0, -1, true));
+	boundaries.add(new Boundary(3000, 1800, 1000, 200, 0, -1, true));
 }
