@@ -13,11 +13,13 @@ ArrayList<Boundary> boundaries;
 ArrayList<Windmill> windmills;
 Ball protagonist;
 
-boolean l=true, r=false ,jump=false;
+boolean _l_=false, _r_=false ,_jump_=false,_stop_;
 int testnum;
 
 float now_x,now_y;
 Vec2 pos;
+
+float jp_time,sp_time;
 
 void setup(){
 	size(1200,900);
@@ -60,33 +62,30 @@ void draw(){
 
 	translate(now_x,now_y);
 
-	if( keyPressed == true ){
-		if( keyCode == RIGHT ){
-			protagonist.move = true;
-			protagonist.action(15);
-			
-		}
-		if( keyCode == LEFT ){
-			protagonist.move = true;
-			protagonist.action(-15);
-		}
-		if( keyCode == UP || key == ' ' ){
-			if( millis()-protagonist.njtime > 1300 ){
-				protagonist.jmp = true;
-			}
-			protagonist.jump(1000);
-		}
-		if( key == 's' || key == 'S' ){
-			ContactEdge stop = protagonist.body.getContactList();
-			for(;stop!=null;stop=stop.next)
-				protagonist.tp(pos.x,pos.y);
-		}
+	if( _r_ == true ){
+		protagonist.move = true;
+		protagonist.action(15);
 		
 	}
-	else{
-		protagonist.move = false;
-		protagonist.action(0);
+	if( _l_ == true ){
+		protagonist.move = true;
+		protagonist.action(-15);
 	}
+	if( _jump_ == true ){
+		if( millis()-protagonist.njtime > 1500 ){
+			protagonist.jmp = true;
+			protagonist.jump(1000);
+		}
+	}
+	if( _stop_ == true ){
+		if( millis()-protagonist.nstime > 3000 ){
+			protagonist.stp = true;
+		}
+		ContactEdge stop = protagonist.body.getContactList();
+		for(;stop!=null;stop=stop.next)
+			protagonist.tp(pos.x,pos.y);
+	}
+
 
 	if( protagonist.reStart() ){
 		setup();
@@ -107,7 +106,54 @@ void draw(){
 	trap_one();
 
 	protagonist.display();
-	if( pos.x > 3600 )
+	if( pos.x > 3600 ){
+		protagonist.stp = true;
 		protagonist.tp(30,570);
+	}
 
+	jp_time = 1500 - millis() + protagonist.njtime;
+	if( jp_time < 0 )
+		jp_time = 0;
+	jp_time = jp_time/1000;
+
+	sp_time = 3000 - millis() + protagonist.nstime;
+	if( sp_time < 0 )
+		sp_time = 0;
+	sp_time = sp_time/1000;
+
+	textSize(40);
+	fill(0);
+	text("Jump : " + jp_time, -now_x+10 , 850);
+	text("Stop : " + sp_time, -now_x+10 , 890);
+
+}
+
+void keyPressed(){
+	if( keyCode == RIGHT ){
+		_r_ = true;
+	}
+	if( keyCode == LEFT ){
+		_l_= true;
+	}
+	if( keyCode == UP || key == ' ' ){
+		_jump_ = true;
+	}
+	if( key == 's' || key == 'S' ){
+		_stop_ = true;
+	}
+}
+
+void keyReleased(){
+	if( keyCode == RIGHT ){
+		_r_ = false;
+	}	
+	if( keyCode == LEFT ){
+		_l_ = false;
+	}
+	if( keyCode == UP || key == ' ' ){
+		_jump_ = false;
+	}
+	if( key == 's' || key == 'S' ){
+		_stop_ = false;
+	}
 }

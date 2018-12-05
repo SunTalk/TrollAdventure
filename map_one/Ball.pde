@@ -5,7 +5,9 @@ class Ball {
 	float r;
 	boolean move = false;
 	boolean jmp = false;
-	float njtime = -1000;
+	boolean stp = false;
+	float njtime = -1500;
+	float nstime = -3000;
 
 	Ball(float x, float y, float r_) {
 		r = r_;
@@ -32,9 +34,13 @@ class Ball {
 		}
 	}
 	void tp(float x, float y){
-		float a = body.getAngle();
-		killBody();
-		makeBody(x,y,25,a);
+		if( stp == true ){
+			float a = body.getAngle();
+			killBody();
+			makeBody(x,y,25,a);
+			nstime = millis();
+			stp = false;
+		}
 	}
 
 	// Is the Ball ready for deletion?
