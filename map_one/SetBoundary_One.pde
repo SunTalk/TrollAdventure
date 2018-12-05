@@ -16,12 +16,29 @@ void map_one_object(){
 	boundaries.add(new Boundary(3600,900,400,300,0,0,true) );
 	//invisible
 	boolean test = false;
-	boundaries.add(new Boundary(400,640,120,10,0.001,0,test) );
-	boundaries.add(new Boundary(600,640,120,10,0.001,0,test) );
-	boundaries.add(new Boundary(840,550,150,10,0.001,0,test) );
+	boundaries.add(new Boundary(250,200,10,400,0,5,test) );
+	boundaries.add(new Boundary(400,640,120,10,0,0,test) );
+	boundaries.add(new Boundary(600,640,120,10,0,0,test) );
+	boundaries.add(new Boundary(840,550,150,10,0,0,test) );
+	boundaries.add(new Boundary(3035,565,10,10,-PI/5,5,test) );
 	//visible
-	boundaries.add(new Boundary(1200,500,300,10,0,0,true) );
 	boundaries.add(new Boundary(400,400,800,10,0,0,true) );
+	boundaries.add(new Boundary(1200,500,300,10,0,0,true) );
+	boundaries.add(new Boundary(2850,450,450,10,-PI/5,0,true) );
+	boundaries.add(new Boundary(3250,630,180,10,0,0,true) );
+	boundaries.add(new Boundary(3300,100,200,10,PI/4,0,true) );//3200,200
+	boundaries.add(new Boundary(3100,300,200,10,PI/4,0,true) );
+	boundaries.add(new Boundary(3500,500,150,10,PI/4,5,true) );
+	//end visible
+	boundaries.add(new Boundary(-1100,410,180,10,0,0,true) );
+	boundaries.add(new Boundary(-900,520,180,10,0,0,true) );
+	boundaries.add(new Boundary(-700,850,180,10,0,0,true) );
+	boundaries.add(new Boundary(-700,410,180,10,0,0,true) );
+	boundaries.add(new Boundary(-700,190,180,10,0,0,true) );
+	boundaries.add(new Boundary(-500,300,180,10,0,0,true) );
+	boundaries.add(new Boundary(-500,740,180,10,0,0,true) );
+	//end invisible
+	boundaries.add(new Boundary(-1100,900,180,10,0,5,false) );
 	//for windmills
 	boundaries.add(new Boundary(2000,400,1000,10,0,5,true) );
 	boundaries.add(new Boundary(2000,800,1000,10,0,5,true) );
@@ -29,6 +46,7 @@ void map_one_object(){
 	// boundaries.add(new Boundary(1350,200,10,300,0,5,true) );
 	//--------------------------------------------------------
 	//left
+	windmills.add(new Windmill(600,200,300,0,0) );
 	windmills.add(new Windmill(1550,580,300,-10,50000) );
 	//right
 	windmills.add(new Windmill(2450,580,300,-10,50000) );
@@ -86,5 +104,12 @@ void trap_one(){
 		line(780,405,805,405);
 		line(795,395,770,395);
 	}
+	
+	fill(182);
+	rect(-1100,630,180,10);
+	rect(-900,740,180,10);
+	rect(-900,300,180,10);
+	rect(-700,630,180,10);
+	rect(-500,520,180,10);
 
 }
