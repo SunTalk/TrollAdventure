@@ -16,6 +16,8 @@ boolean l=true, r=false ,jump=false;
 float _x, _y;
 
 int diedCount = 0;
+int lying = 1;
+boolean check = false;
 
 void setup()
 {
@@ -32,6 +34,9 @@ void setup()
 
 	ooxx = new Ball(300,720,25);
 	_x = _y = 0;
+
+	check = false;
+	lying = 1;
 }
 
 void draw()
@@ -43,10 +48,21 @@ void draw()
 	Vec2 pos = box2d.getBodyPixelCoord(ooxx.body);
 	
 	if(pos.x > 3600)
+	{
 		ooxx.teleport(5, 724);
+		lying++;
+
+		if(lying == 1)
+			check = false;
+		else
+			check = true;
+	}
 	else if(pos.x < 0)
+	{
 		ooxx.teleport(3595, 724);
-	
+		lying--;
+	}
+
 	if( pos.x > 0 )
 		_x = 0;
 
@@ -68,7 +84,23 @@ void draw()
 
 	fill(0);
 	textSize(100);
-	text("You Died " + diedCount + " Times!", 10, 400);
+	if(check == false)
+	{
+		if(diedCount == 0)
+		{
+			text("Welcome", 10, 100);
+			text("Infinite Abyss!!!", 10, 200);
+			text("You Died " + diedCount + " Times", 10, 400);
+		}
+		else
+			text("You Died " + diedCount + " Times", 10, 200);
+		
+	}
+	text("Area: " + lying, 2500, 400);
+
+	textSize(80);
+	text("<-- GO", 400, 1200);
+	text("<-- GO", 400, 1500);
 
 	if( keyPressed == true )
 	{
@@ -101,6 +133,14 @@ void draw()
 
 	for(Boundary wall: boundaries)
 		wall.display();
+
+	fill(0);
+	textSize(40);
+	text("WIN", 1500, 1700);
+
+	if(pos.x > 1000 && pos.x < 2000 && pos.y > 1500);
+	else
+		disapear();
 
 	ooxx.display();
 }
