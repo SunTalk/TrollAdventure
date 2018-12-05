@@ -11,7 +11,7 @@ class Ball
 	{
 		r = r_;
 		// This function puts the Ball in the Box2d world
-		makeBody(x,y,r);
+		makeBody(x,y,r,0);
 	}
 
 	// This function removes the Ball from the box2d world
@@ -24,7 +24,9 @@ class Ball
 	{
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 
-		if(pos.x > 1600 || pos.x < 1100)
+		if(pos.y > 1800)
+			return true;
+		else if((pos.x > 1600 || pos.x < 1100) && pos.y < 1000)
 		{
 			if( pos.y > 950 )
 				return true;
@@ -33,6 +35,14 @@ class Ball
 		}
 		else
 			return false;
+	}
+
+	void teleport(float x, float y)
+	{
+		float a = body.getAngle();
+
+		killBody();
+		makeBody(x,y,25,a);
 	}
 
 	void action(float x)
@@ -96,13 +106,14 @@ class Ball
 	}
 
 	// Here's our function that adds the Ball to the Box2D world
-	void makeBody(float x, float y, float r)
+	void makeBody(float x, float y, float r, float a)
 	{
 		// Define a body
 		BodyDef bd = new BodyDef();
 		// Set its position
 		bd.position = box2d.coordPixelsToWorld(x,y);
 		bd.type = BodyType.DYNAMIC;
+		bd.angle = a;
 		body = box2d.world.createBody(bd);
 
 		// Make the body's shape a circle
@@ -112,8 +123,9 @@ class Ball
 		FixtureDef fd = new FixtureDef();
 		fd.shape = cs;
 		// Parameters that affect physics
+		
 		fd.density = 1;
-		fd.friction = 0.01;
+		fd.friction = 10000;
 		fd.restitution = 0;
 		
 		// Attach fixture to body

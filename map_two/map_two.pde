@@ -26,7 +26,7 @@ void setup()
 
 	boundaries = new ArrayList<Boundary>();
 
-	map_one_boundary();
+	map_two_boundary();
 
 	ooxx = new Ball(300,720,25);
 	_x = _y = 0;
@@ -43,6 +43,10 @@ void draw()
 	text("x: " + pos.x, pos.x + 25, pos.y-25);
 	text("y: " + pos.y, pos.x + 25, pos.y-10);
 	
+	if(pos.x > 3600)
+		ooxx.teleport(5, 724);
+	else if(pos.x < 0)
+		ooxx.teleport(3595, 724);
 	
 	if( pos.x > 0 )
 		_x = 0;
@@ -58,6 +62,8 @@ void draw()
 
 	if( pos.y > 1000)
 		_y = -900;
+	else
+		_y = 0;
 
 	translate(_x,_y);
 
@@ -84,8 +90,8 @@ void draw()
 	}
 
 	// reborn
-	if(ooxx.reStart())
-		setup();
+	// if(ooxx.reStart())
+	// 	setup();
 
 	for(Boundary wall: boundaries)
 		wall.display();
