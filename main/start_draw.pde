@@ -1,8 +1,7 @@
 void draw_start(){
 	
 	textFont(start_interface);
-	
-	background(255);
+
 	textSize(50);
 	fill(0);
 	text("Troll",150,200);
@@ -15,4 +14,18 @@ void draw_start(){
 	
 	textFont(origin_font);
 	now_x = now_y = 0;
+}
+
+void draw_choice(){
+	fill(255);
+	stroke(1);
+	rect(600,350,700,500);
+	rect(445,300,250,200);
+	rect(755,300,250,200);
+	rect(600,500,200,80);
+	fill(0);
+	textSize(80);
+	text("Stage 2", 655,330);
+	text("Stage 1", 345,330);
+	text("BACK", 540,530);
 }

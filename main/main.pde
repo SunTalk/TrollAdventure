@@ -117,6 +117,10 @@ void draw(){
 	if( gamemode == 0 ){
 		draw_start();
 	}
+	else if( gamemode == 5 ){
+		draw_start();
+		draw_choice();
+	}
 	else if( gamemode == 1 ){
 		draw_one();
 		trap_one();
@@ -148,3 +152,4 @@ void draw(){
 //---------------------------------------------
 
 }
+

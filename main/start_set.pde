@@ -4,7 +4,7 @@ void set_start(){
 	//left
 	boundaries.add(new Boundary(-5,450,10,900,0,0,true) );
 	//down
-	boundaries.add(new Boundary(600,905,1200,10,0,0,true) );
+	boundaries.add(new Boundary(600,850,1200,100,0,0,true) );
 	//right
 	boundaries.add(new Boundary(1205,450,10,900,0,0,true) );
 	//top

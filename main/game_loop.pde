@@ -5,8 +5,23 @@ void mousePressed() {
 			int range_tmp;
 			range_tmp = ( mouseX - 600 )*( mouseX -600 ) + ( mouseY - 550 )*( mouseY - 550 );
 			if( range_tmp < 10000 ){
+				gamemode = 5;
+			}
+		}
+	}
+
+	if( gamemode == 5 ){
+		if( mousePressed == true && mouseButton == LEFT ){
+			if( mouseX > 500 && mouseX < 700 && mouseY > 460 && mouseY < 540 ){
+				gamemode = 0;
+			}
+			if( mouseX > 320 && mouseX < 570 && mouseY > 200 && mouseY < 400 ){
 				gamemode = 1;
 				setup();
+			}
+			if( mouseX > 630 && mouseX < 880 && mouseY > 200 && mouseY < 400 ){
+				// gamemode = 2;
+				// setup();
 			}
 		}
 	}
