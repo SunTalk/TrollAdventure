@@ -14,7 +14,6 @@ ArrayList<Windmill> windmills;
 Ball protagonist;
 
 boolean _l_=false, _r_=false ,_jump_=false,_stop_;
-int testnum;
 
 float now_x,now_y;
 Vec2 pos;
