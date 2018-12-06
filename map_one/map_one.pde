@@ -20,6 +20,11 @@ Vec2 pos;
 
 float jp_time,sp_time;
 
+PImage pic_star;
+PImage pic_home;
+int star_num = 0;
+int[] stars = new int[3];
+
 void setup(){
 	size(1200,900);
 	smooth();
@@ -31,6 +36,12 @@ void setup(){
 	boundaries = new ArrayList<Boundary>();
 	windmills = new ArrayList<Windmill>(); 
 	map_one_object();
+
+	pic_star = loadImage("star.png");
+	pic_home = loadImage("home.png");
+	for(int i = 0 ; i < 3 ; i++ )
+		stars[i] = 1;
+	star_num = 0;
 
 	protagonist = new Ball(150,720,25);//150,720
 	now_x = now_y = 0;

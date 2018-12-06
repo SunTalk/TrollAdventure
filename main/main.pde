@@ -21,8 +21,12 @@ Vec2 pos;
 float jp_time,sp_time;
 
 int gamemode = 0;
+
+PImage pic_star;
+PImage pic_home;
 int star_num;
-int star;
+int[] stars = new int[3];
+
 
 PFont start_interface;
 PFont origin_font;
@@ -46,6 +50,12 @@ void setup(){
 	protagonist = new Ball(150,720,25);//150,720
 	now_x = now_y = 0;
 
+	pic_star = loadImage("star.png");
+	pic_home = loadImage("home.png");
+	for(int i = 0 ; i < 3 ; i++ )
+		stars[i] = 1;
+	star_num = 0;
+
 	if( gamemode == 0 ){
 		set_start();
 	}
@@ -53,7 +63,6 @@ void setup(){
 		map_one_object();
 	}
 
-	star_num = 0;
 }
 
 void draw(){

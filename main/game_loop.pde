@@ -2,8 +2,8 @@ void mousePressed() {
 	
 	if( gamemode == 0 ){
 		if( mousePressed == true && mouseButton == LEFT ){
-			int range_tmp;
-			range_tmp = ( mouseX - 600 )*( mouseX -600 ) + ( mouseY - 550 )*( mouseY - 550 );
+			float range_tmp;
+			range_tmp = ( mouseX - 600 )*( mouseX - 600 ) + ( mouseY - 550 )*( mouseY - 550 );
 			if( range_tmp < 10000 ){
 				gamemode = 5;
 			}

@@ -11,7 +11,7 @@ void draw_start(){
 	ellipse(600, 550, 200, 200);
 	fill(0);
 	triangle(660, 550, 570, 500, 570, 600);
-	
+
 	textFont(origin_font);
 	now_x = now_y = 0;
 }

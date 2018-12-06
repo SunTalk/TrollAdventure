@@ -1,7 +1,7 @@
 void draw_one(){
 	fill(0);
-	rect( -now_x+1150,50,50,50 );//home
-	rect( -now_x+550,50,50,50 );//star
+	image(pic_home,-now_x+1100,0, 100, 100);//home
+	image(pic_star,-now_x+500,0,100,100);//star
 	textSize(80);
 	text("X "+star_num ,-now_x+600,80);
 }
