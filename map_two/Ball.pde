@@ -25,8 +25,16 @@ class Ball
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 
 		if(pos.y > 1800)
-			return true;
-		else if((pos.x > 1600 || pos.x < 1100) && pos.y < 1000)
+		{
+			if(pos.x < 3600)
+				return true;
+			else
+			{
+				teleport(1500, 1400);
+				return false;
+			}
+		}
+		else if((pos.x > 1600 || pos.x < 1100) && pos.y < 950)
 		{
 			if( pos.y > 950 )
 				return true;
