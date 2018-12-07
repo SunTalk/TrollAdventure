@@ -8,9 +8,17 @@ void draw_start(){
 	text("Adventure",250,350);
 	strokeWeight(5);
 	fill(255);
-	ellipse(600, 550, 200, 200);
+	ellipse(400, 550, 200, 200);//left
+	ellipse(800, 550, 200, 200);//right
+	rect(800,550,100,120);//right
 	fill(0);
-	triangle(660, 550, 570, 500, 570, 600);
+	triangle(460, 550, 370, 500, 370, 600);//left
+	//right
+	line(770,510,830,510);
+	line(770,530,830,530);
+	line(770,550,830,550);
+	line(770,570,830,570);
+	line(770,590,830,590);
 
 	textFont(origin_font);
 	now_x = now_y = 0;

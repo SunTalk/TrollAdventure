@@ -176,9 +176,6 @@ void draw(){
 		textSize(80);
 		text("HOME", -now_x+540,530);
 	}
-	textSize(50);
-	fill(255,0,0);
-	text(( mouseX - 600 )*( mouseX - 600 ) + ( mouseY - 550 )*( mouseY - 550 ),mouseX,mouseY);
-
+	
 }
 

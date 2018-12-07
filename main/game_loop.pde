@@ -2,12 +2,20 @@ void mousePressed() {
 	
 	if( gamemode == 0 ){
 		if( mousePressed == true && mouseButton == LEFT ){
-			float range_tmp;
-			range_tmp = ( mouseX - 600 )*( mouseX - 600 ) + ( mouseY - 550 )*( mouseY - 550 );
+			int range_tmp;
+			range_tmp = ( mouseX - 400 )*( mouseX - 400 ) + ( mouseY - 550 )*( mouseY - 550 );
 			if( range_tmp < 10000 ){
 				gamemode = 5;
 			}
 		}
+		if( mousePressed == true && mouseButton == LEFT ){
+			int range_tmp;
+			range_tmp = ( mouseX - 800 )*( mouseX - 800 ) + ( mouseY - 550 )*( mouseY - 550 );
+			if( range_tmp < 10000 ){
+				// gamemode = 5;
+			}
+		}
+
 	}
 
 	if( win ){
