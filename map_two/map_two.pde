@@ -44,10 +44,11 @@ void draw()
 	background(255);
 
 	box2d.step();
+	dis_boundary();
 
 	Vec2 pos = box2d.getBodyPixelCoord(ooxx.body);
 	
-	if(pos.x > 3600)
+	if(pos.x > 3600 && pos.y < 900)
 	{
 		ooxx.teleport(5, 724);
 		lying++;
@@ -80,6 +81,9 @@ void draw()
 	else
 		_y = 0;
 
+	if(pos.x > 3630)
+		_x = -3600;
+
 	translate(_x,_y);
 
 	fill(0);
@@ -101,6 +105,24 @@ void draw()
 	textSize(80);
 	text("<-- GO", 400, 1200);
 	text("<-- GO", 400, 1500);
+
+	text("Over My Dead Body", 2800, 1300);
+	text("If You can -->", 2900, 1400);
+
+	text("Falling Down", 4200, 1100);
+	text("to", 4450, 1200);
+	text("Go Back", 4350, 1300);
+
+
+	// ------------------------
+	// star pic
+	textSize(40);
+	text("star", 3350, 100);
+	text("star", 1350, 150);
+	text("star", 4400, 1600);
+
+	// ------------------------
+
 
 	if( keyPressed == true )
 	{
@@ -131,8 +153,13 @@ void draw()
 		setup();
 	}
 
-	for(Boundary wall: boundaries)
+	for(Boundary wall: boundaries){
+		ContactEdge bounvis = wall.b.getContactList();
+		for(;bounvis!=null;bounvis=bounvis.next)
+			if( bounvis.contact.isTouching() == true )
+				wall.vis();
 		wall.display();
+	}
 
 	fill(0);
 	textSize(40);
