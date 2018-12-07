@@ -13,7 +13,7 @@ ArrayList<Boundary> boundaries;
 ArrayList<Windmill> windmills;
 Ball protagonist;
 
-boolean _l_=false, _r_=false ,_jump_=false,_stop_;
+boolean _l_, _r_,_jump_,_stop_,win=false;
 
 float now_x,now_y;
 Vec2 pos;
@@ -30,7 +30,6 @@ int[] stars = new int[3];
 
 PFont start_interface;
 PFont origin_font;
-
 
 void setup(){
 
@@ -62,7 +61,11 @@ void setup(){
 	else if( gamemode == 1 ){
 		map_one_object();
 	}
-
+	_l_=false;
+	_r_=false ;
+	_jump_=false;
+	_stop_=false;
+	// win=true;
 }
 
 void draw(){
@@ -135,8 +138,9 @@ void draw(){
 		trap_one();
 	}
 
+	if( win == false )
+		protagonist.display();
 
-	protagonist.display();
 	if( pos.x > 3600 ){
 		protagonist.stp = true;
 		protagonist.tp(30,570);
@@ -159,6 +163,22 @@ void draw(){
 	text("Stop : " + sp_time, -now_x+10 , 890);
 
 //---------------------------------------------
+	
+	if( win == true ){
+		fill(255);
+		stroke(1);
+		strokeWeight(5);
+		rect(-now_x+600,350,700,500);
+		rect(-now_x+600,500,200,80);
+		fill(0);
+		textSize(150);
+		text("YOU WIN !!!",-now_x+370,330);
+		textSize(80);
+		text("HOME", -now_x+540,530);
+	}
+	textSize(50);
+	fill(255,0,0);
+	text(( mouseX - 600 )*( mouseX - 600 ) + ( mouseY - 550 )*( mouseY - 550 ),mouseX,mouseY);
 
 }
 

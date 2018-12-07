@@ -10,6 +10,16 @@ void mousePressed() {
 		}
 	}
 
+	if( win ){
+		if( mousePressed == true && mouseButton == LEFT ){
+			if( mouseX > 500 && mouseX < 700 && mouseY > 460 && mouseY < 540 ){
+				gamemode = 0;
+				win = false;
+				setup();
+			}
+		}
+	}
+
 	if( gamemode == 5 ){
 		if( mousePressed == true && mouseButton == LEFT ){
 			if( mouseX > 500 && mouseX < 700 && mouseY > 460 && mouseY < 540 ){
