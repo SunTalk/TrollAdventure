@@ -18,6 +18,7 @@ float _x, _y;
 int diedCount = 0;
 int lying = 1;
 boolean check = false;
+boolean check2 = true;
 
 void setup()
 {

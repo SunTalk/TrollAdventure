@@ -39,6 +39,9 @@ void map_two_boundary()
 
 	// jump
 	boundaries.add(new Boundary(3300, 1550, 10, 200, 0.9, 2.6, false));
+
+	// top
+	boundaries.add(new Boundary(4200, 900, 1200, 100, 0, 0, true));
 }
 
 void disapear()
@@ -51,10 +54,11 @@ void dis_boundary()
 {
 	// star
 	// Air
-	if(lying > 1 || lying < 0)
+	if((lying > 1 || lying < 0) && check2)
 	{
 		boundaries.add(new Boundary(3000, 600, 200, 10, 0, -1, true));
 		boundaries.add(new Boundary(3200, 500, 200, 10, 0, -1, true));
 		boundaries.add(new Boundary(3500, 400, 200, 10, 0.5, 2.5, true));
+		check2 = false;
 	}
 }
