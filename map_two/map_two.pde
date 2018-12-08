@@ -52,6 +52,8 @@ void draw()
 	if(pos.x > 3600 && pos.y < 900)
 	{
 		ooxx.teleport(5, 724);
+		ooxx.move = true;
+		ooxx.action(450);
 		lying++;
 
 		if(lying == 1)
@@ -62,6 +64,8 @@ void draw()
 	else if(pos.x < 0)
 	{
 		ooxx.teleport(3595, 724);
+		ooxx.move = true;
+		ooxx.action(-450);
 		lying--;
 	}
 
