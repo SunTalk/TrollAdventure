@@ -33,12 +33,13 @@ class Ball {
 			jmp = false;
 		}
 	}
-	void tp(float x, float y){
+	void tp(float x, float y,boolean force){
 		if( stp == true ){
 			float a = body.getAngle();
 			killBody();
 			makeBody(x,y,25,a);
-			nstime = millis();
+			if( !force )
+				nstime = millis();
 			stp = false;
 		}
 	}
@@ -54,6 +55,23 @@ class Ball {
 		return false;
 	}
 
+	boolean reStart_two(){
+		Vec2 pos = box2d.getBodyPixelCoord(body);
+
+		if(pos.y > 1800 && pos.x < 3600 )
+		{
+			return true;
+		}
+		else if(pos.y > 900 && pos.y < 910)
+		{
+			if( pos.x > 1600 || pos.x < 1100 )
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
 	// 
 	void display() {
 		// We look at each body and get its screen position

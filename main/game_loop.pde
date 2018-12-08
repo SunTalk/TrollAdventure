@@ -48,8 +48,8 @@ void mousePressed() {
 				setup();
 			}
 			if( mouseX > 630 && mouseX < 880 && mouseY > 200 && mouseY < 400 ){
-				// gamemode = 2;
-				// setup();
+				gamemode = 2;
+				setup();
 			}
 		}
 	}
@@ -69,7 +69,7 @@ void mousePressed() {
 
 	if( gamemode == 1 || gamemode == 2 ){
 		if( mousePressed == true && mouseButton == LEFT ){//-now_x+1150,50,50,50
-			if( mouseX > -now_x+1150-25 && mouseX < -now_x+1150+25 && mouseY > 25 && mouseY < 75 ){
+			if( mouseX > 1125 && mouseX < 1175 && mouseY > 25 && mouseY < 75 ){
 				gamemode = 0;
 				setup();
 			}

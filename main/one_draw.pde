@@ -5,6 +5,10 @@ void draw_one(){
 	textSize(80);
 	text("X "+star_num ,-now_x+600,80);
 
+	if( pos.x > 3600 ){
+		protagonist.stp = true;
+		protagonist.tp(30,570,true);
+	}
 
 	if( stars[0] == 1 ){
 		image(pic_star,-1000,100,100,100);
@@ -23,20 +27,20 @@ void draw_one(){
 	rect(50,350,50,80);
 	ellipse(50,310,50,50);
 
-	if( pos.x < -900 && pos.x > -1100 && pos.y < 200 && pos.y > 0 && stars[0] == 1 ){
+	if( pos.x < -910 && pos.x > -990 && pos.y < 190 && pos.y > 110 && stars[0] == 1 ){
 		stars[0] = 0;
 		star_num++;
 	}
-	if( pos.x < 2100 && pos.x > 1900 && pos.y < 200 && pos.y > 0 && stars[1] == 1 ){
+	if( pos.x < 2090 && pos.x > 2010 && pos.y < 190 && pos.y > 110 && stars[1] == 1 ){
 		stars[1] = 0;
 		star_num++;
 	}
-	if( pos.x < 3200 && pos.x > 3000 && pos.y < 200 && pos.y > 0 && stars[2] == 1 ){
+	if( pos.x < 3190 && pos.x > 3110 && pos.y < 190 && pos.y > 110 && stars[2] == 1 ){
 		stars[2] = 0;
 		star_num++;
 	}
 
-	if( pos.x < -1125 && pos.x > -1175 && pos.y < 400 && pos.y > 320 && stars[2] == 1  ){
+	if( pos.x < -1125 && pos.x > -1175 && pos.y < 400 && pos.y > 320 ){
 		win = true;
 	}
 

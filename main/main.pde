@@ -15,7 +15,11 @@ Ball protagonist;
 
 boolean _l_, _r_,_jump_,_stop_,win,die;
 
+boolean check,check2;
+int lying,diedCount=0;
+
 float now_x,now_y;
+float die_x,die_y;
 Vec2 pos;
 
 float jp_time,sp_time;
@@ -49,6 +53,7 @@ void setup(){
 	windmills = new ArrayList<Windmill>(); 
 
 	protagonist = new Ball(150,720,25);//150,720
+
 	now_x = now_y = 0;
 
 	pic_star = loadImage("star.png");
@@ -60,9 +65,13 @@ void setup(){
 	if( gamemode == 0 ){
 		set_start();
 		introduction_page = 1;
+		diedCount = 0;
 	}
 	else if( gamemode == 1 ){
 		map_one_object();
+	}
+	else if( gamemode == 2 ){
+		map_two_object();
 	}
 	_l_=false;
 	_r_=false ;
@@ -70,6 +79,11 @@ void setup(){
 	_stop_=false;
 	win=false;
 	die=false;
+
+	check = false;
+	check2 = true;
+	lying = 1;
+
 }
 
 void draw(){
@@ -85,6 +99,14 @@ void draw(){
 //---------------------------------------------
 	if( gamemode == 1 ){
 		vis_one();
+	}
+	if( gamemode == 2 ){
+		vis_two();
+	}
+
+	if( die ){
+		now_x = die_x;
+		now_y = die_y;
 	}
 
 	translate(now_x,now_y);
@@ -110,11 +132,19 @@ void draw(){
 		}
 		ContactEdge stop = protagonist.body.getContactList();
 		for(;stop!=null;stop=stop.next)
-			protagonist.tp(pos.x,pos.y);
+			protagonist.tp(pos.x,pos.y,false);
 	}
 
 //---------------------------------------------
-	if( protagonist.reStart(910) ){
+	if( protagonist.reStart(910) && gamemode == 1 && die == false ){
+		die_x = now_x;
+		die_y = now_y;
+		die = true;
+	}
+	else if( protagonist.reStart_two() && gamemode == 2 && die == false ){
+		die_x = now_x;
+		die_y = now_y;
+		diedCount++;
 		die = true;
 	}
 
@@ -145,14 +175,15 @@ void draw(){
 		draw_one();
 		trap_one();
 	}
+	else if( gamemode == 2 ){
+		draw_two();
+		dis_boundary();
+	}
 
 	if( win == false && die == false )
 		protagonist.display();
 
-	if( pos.x > 3600 ){
-		protagonist.stp = true;
-		protagonist.tp(30,570);
-	}
+	
 //---------------------------------------------
 	jp_time = 1500 - millis() + protagonist.njtime;
 	if( jp_time < 0 )
@@ -167,8 +198,8 @@ void draw(){
 
 	textSize(40);
 	fill(0);
-	text("Jump : " + jp_time, -now_x+10 , 850);
-	text("Stop : " + sp_time, -now_x+10 , 890);
+	text("Jump : " + jp_time, -now_x+10 , -now_y+850);
+	text("Stop : " + sp_time, -now_x+10 , -now_y+890);
 
 //---------------------------------------------
 	
@@ -188,32 +219,32 @@ void draw(){
 		fill(255);
 		stroke(1);
 		strokeWeight(5);
-		rect(-now_x+600,350,700,500);
-		rect(-now_x+600,500,200,80);
+		rect(-now_x+600,-now_y+350,700,500);
+		rect(-now_x+600,-now_y+500,200,80);
 		fill(0);
 		textSize(150);
-		text("YOU WIN !!!",-now_x+370,400);
+		text("YOU WIN !!!",-now_x+370,-now_y+400);
 		textSize(80);
-		text("HOME", -now_x+540,530);
+		text("HOME", -now_x+540,-now_y+530);
 		if( star_num >= 1 )
-			image(pic_star,-now_x+550,130,100,100);
+			image(pic_star,-now_x+550,-now_y+130,100,100);
 		if( star_num >= 2 )
-			image(pic_star,-now_x+450,170,100,100);
+			image(pic_star,-now_x+450,-now_y+170,100,100);
 		if( star_num >= 3 )
-			image(pic_star,-now_x+650,170,100,100);
+			image(pic_star,-now_x+650,-now_y+170,100,100);
 	}
 	
 	if( die == true ){
 		fill(255);
 		stroke(1);
 		strokeWeight(5);
-		rect(-now_x+600,350,700,500);
-		rect(-now_x+600,500,200,80);
+		rect(-now_x+600,-now_y+350,700,500);
+		rect(-now_x+600,-now_y+500,200,80);
 		fill(0);
 		textSize(150);
-		text("YOU DIE !!!",-now_x+370,330);
+		text("YOU DIE !!!",-now_x+370,-now_y+330);
 		textSize(80);
-		text("AGAIN", -now_x+530,530);
+		text("AGAIN", -now_x+530,-now_y+530);
 	}
 
 }
