@@ -13,7 +13,7 @@ ArrayList<Boundary> boundaries;
 ArrayList<Windmill> windmills;
 Ball protagonist;
 
-boolean _l_, _r_,_jump_,_stop_,win=false;
+boolean _l_, _r_,_jump_,_stop_,win,die;
 
 float now_x,now_y;
 Vec2 pos;
@@ -21,6 +21,8 @@ Vec2 pos;
 float jp_time,sp_time;
 
 int gamemode = 0;
+
+int introduction_page;
 
 PImage pic_star;
 PImage pic_home;
@@ -57,6 +59,7 @@ void setup(){
 
 	if( gamemode == 0 ){
 		set_start();
+		introduction_page = 1;
 	}
 	else if( gamemode == 1 ){
 		map_one_object();
@@ -65,7 +68,8 @@ void setup(){
 	_r_=false ;
 	_jump_=false;
 	_stop_=false;
-	// win=true;
+	win=false;
+	die=false;
 }
 
 void draw(){
@@ -110,8 +114,8 @@ void draw(){
 	}
 
 //---------------------------------------------
-	if( protagonist.reStart() ){
-		setup();
+	if( protagonist.reStart(910) ){
+		die = true;
 	}
 
 	for(Windmill wind: windmills){
@@ -133,12 +137,16 @@ void draw(){
 		draw_start();
 		draw_choice();
 	}
+	else if( gamemode == 6 ){
+		draw_start();
+		draw_introduction();
+	}
 	else if( gamemode == 1 ){
 		draw_one();
 		trap_one();
 	}
 
-	if( win == false )
+	if( win == false && die == false )
 		protagonist.display();
 
 	if( pos.x > 3600 ){
@@ -164,7 +172,19 @@ void draw(){
 
 //---------------------------------------------
 	
-	if( win == true ){
+	if( win == true && gamemode == 0 ){
+		fill(255);
+		stroke(1);
+		rect(600,350,700,500);
+		rect(600,500,200,80);
+		fill(0);
+		textSize(60);
+		text("Now you know how to play",300,300);
+		text("good luck for other level~",350,400);
+		textSize(80);
+		text("BACK", 540,530);
+	}
+	if( win == true && gamemode != 0 ){
 		fill(255);
 		stroke(1);
 		strokeWeight(5);
@@ -172,10 +192,29 @@ void draw(){
 		rect(-now_x+600,500,200,80);
 		fill(0);
 		textSize(150);
-		text("YOU WIN !!!",-now_x+370,330);
+		text("YOU WIN !!!",-now_x+370,400);
 		textSize(80);
 		text("HOME", -now_x+540,530);
+		if( star_num >= 1 )
+			image(pic_star,-now_x+550,130,100,100);
+		if( star_num >= 2 )
+			image(pic_star,-now_x+450,170,100,100);
+		if( star_num >= 3 )
+			image(pic_star,-now_x+650,170,100,100);
 	}
 	
+	if( die == true ){
+		fill(255);
+		stroke(1);
+		strokeWeight(5);
+		rect(-now_x+600,350,700,500);
+		rect(-now_x+600,500,200,80);
+		fill(0);
+		textSize(150);
+		text("YOU DIE !!!",-now_x+370,330);
+		textSize(80);
+		text("AGAIN", -now_x+530,530);
+	}
+
 }
 

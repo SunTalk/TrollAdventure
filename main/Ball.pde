@@ -44,12 +44,11 @@ class Ball {
 	}
 
 	// Is the Ball ready for deletion?
-	boolean reStart() {
+	boolean reStart(int y) {
 		// Let's find the screen position of the Ball
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 		// Is it off the bottom of the screen?
-		if (pos.y > height+r*2) {
-			killBody();
+		if ( pos.y > y ) {
 			return true;
 		}
 		return false;
@@ -62,14 +61,13 @@ class Ball {
 		// Get its angle of rotation
 		float a = body.getAngle();
 		pushMatrix();
+		
 		translate(pos.x,pos.y);
 		rotate(-a);
 		fill(175);
 		stroke(0);
 		strokeWeight(1);
 		ellipse(0,0,r*2,r*2);
-		// Let's add a line so we can see the rotation
-		// line(0,0,r,0);
 		fill(255);
 		ellipse(r/2,-8,r/2,r/2);
 		ellipse(-r/2,-8,r/2,r/2);

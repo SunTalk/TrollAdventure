@@ -85,32 +85,3 @@ void map_one_object(){
 	windmills.add(new Windmill(2500,300,70,-10,500) );
 }
 
-void trap_one(){
-	if( pos.x < 350 || pos.x > 650 || pos.y < 400 ){
-		noStroke();
-		fill(182);
-		rect(500,900,300,300);
-		fill(0);
-		stroke(1);
-		line(300,750,700,750);
-	}
-
-	if( pos.x < 750 || pos.x > 850 || pos.y > 400 ){
-		fill(182);
-		rect(800,200,10,410);
-		noStroke();
-		rect(795,400,10,10);
-		stroke(1);
-		fill(0);
-		line(780,405,805,405);
-		line(795,395,770,395);
-	}
-	
-	fill(182);
-	rect(-1100,630,180,10);
-	rect(-900,740,180,10);
-	rect(-900,300,180,10);
-	rect(-700,630,180,10);
-	rect(-500,520,180,10);
-	
-}
