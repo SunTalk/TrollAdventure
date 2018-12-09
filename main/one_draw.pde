@@ -24,8 +24,10 @@ void draw_one(){
 	rect(-1150,360,50,80);
 	ellipse(-1150,320,50,50);
 
-	rect(50,350,50,80);
-	ellipse(50,310,50,50);
+	if( pos.x > 300 || pos.y > 400 ){
+		rect(50,350,50,80);
+		ellipse(50,310,50,50);
+	}
 
 	if( pos.x < -910 && pos.x > -990 && pos.y < 190 && pos.y > 110 && stars[0] == 1 ){
 		stars[0] = 0;

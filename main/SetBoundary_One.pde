@@ -17,7 +17,7 @@ void map_one_object(){
 	boundaries.add(new Boundary(3600,900,400,300,0,0,true) );
 	//invisible
 	boolean test = false;
-	boundaries.add(new Boundary(250,200,10,400,0,5,test) );
+	// boundaries.add(new Boundary(250,200,10,400,0,5,test) );
 	boundaries.add(new Boundary(400,640,120,10,0,0,test) );
 	boundaries.add(new Boundary(600,640,120,10,0,0,test) );
 	boundaries.add(new Boundary(840,550,150,10,0,0,test) );
