@@ -1,3 +1,37 @@
+// ---------- for Arduino ----------
+void arduinoMove()
+{
+	if( die == false && win == false && val != 0)
+	{
+		if( buttomCheck[0] == true )
+		{
+			_l_= true;
+		}
+		if( buttomCheck[1] == true )
+		{
+			_r_ = true;
+		}
+		if( buttomCheck[2] == true )
+		{
+			_jump_ = true;
+		}
+		if( buttomCheck[3] == true )
+		{
+			_stop_ = true;
+		}
+	}
+	else if(val == 0)
+	{
+		_l_= false;
+		_r_ = false;
+		_jump_ = false;
+		_stop_ = false;
+	}
+
+}
+
+// ---------------------------------
+
 void mousePressed() {
 	
 	if( gamemode == 0 ){

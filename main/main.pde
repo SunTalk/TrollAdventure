@@ -37,6 +37,15 @@ int[] stars = new int[3];
 PFont start_interface;
 PFont origin_font;
 
+// ---------- for Arduino ----------
+import processing.serial.*;
+
+Serial port; // Create object from Serial class
+int val;
+boolean[] buttomCheck = new boolean[4];
+
+// ---------------------------------
+
 void setup(){
 
 	start_interface = createFont("KarmaticArcade.otf",16);
@@ -84,6 +93,17 @@ void setup(){
 	check2 = true;
 	lying = 1;
 
+	// ---------- for Arduino ----------
+	println(Serial.list());
+	String portName = Serial.list()[1];
+
+	port = new Serial(this, portName, 9600);
+
+	for(int i=0; i<4; i++)
+		buttomCheck[i] = false;
+
+	// ---------------------------------
+
 }
 
 void draw(){
@@ -93,8 +113,30 @@ void draw(){
 	box2d.step();
 
 	pos = box2d.getBodyPixelCoord( protagonist.body);
-	
 
+	// ---------- for Arduino ----------
+	if (0 < port.available())
+	{ // If data is available,
+		val = port.read(); // read it and store it in val
+	}
+
+	if(val == 2)
+		buttomCheck[0] = true;
+	else if(val == 3)
+		buttomCheck[1] = true;
+	else if(val == 4)
+		buttomCheck[2] = true;
+	else if(val == 5)
+		buttomCheck[3] = true;
+	else if(val == 0)
+	{
+		for(int i=0; i<4; i++)
+			buttomCheck[i] = false;
+	}
+
+	arduinoMove();
+
+	// ---------------------------------
 	
 //---------------------------------------------
 	if( gamemode == 1 ){
