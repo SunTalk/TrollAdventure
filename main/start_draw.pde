@@ -77,9 +77,10 @@ void draw_introduction(){// gamemode == 6
 		popMatrix();
 
 		fill(0);
-		textSize(80);
-		text("This is our",550,300);
-		text("Protagonist",600,400);
+		textSize(60);
+		text("This is our",500,200);
+		text("Protagonist",550,300);
+		text("He's name is Troll",570,400);
 
 	}
 	else if( introduction_page == 2 ){
