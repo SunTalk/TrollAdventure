@@ -12,7 +12,7 @@ void draw_two(){
 	if(pos.x > 3600 && pos.y < 900)
 	{	
 		protagonist.stp = true;
-		protagonist.tp(5, 724,true);
+		protagonist.tp(5, pos.y, true);
 		protagonist.move = true;
 		protagonist.action(450);
 		lying++;
@@ -25,7 +25,13 @@ void draw_two(){
 	else if(pos.x < 0 && pos.y < 1600)
 	{	
 		protagonist.stp = true;
-		protagonist.tp(3595, 724,true);
+		if(pos.y < 1300 && pos.y > 900)
+			protagonist.tp(3595, 724-(1300-pos.y), true);
+		else if(pos.y < 1600 && pos.y > 1300)
+			protagonist.tp(3595, 724-(1600-pos.y), true);
+		else
+			protagonist.tp(3595, pos.y, true);
+
 		protagonist.move = true;
 		protagonist.action(-450);
 		lying--;
