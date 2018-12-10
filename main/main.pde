@@ -156,7 +156,7 @@ void draw(){
 		vis_two();
 	}
 
-	if( die ){
+	if( die || win ){
 		now_x = die_x;
 		now_y = die_y;
 	}
@@ -268,6 +268,8 @@ void draw(){
 		text("BACK", 540,530);
 	}
 	if( win == true && gamemode != 0 ){
+		die_x = now_x;
+		die_y = now_y;
 		fill(255);
 		stroke(1);
 		strokeWeight(5);

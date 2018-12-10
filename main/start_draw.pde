@@ -21,8 +21,8 @@ void draw_start(){
 	line(770,590,830,590);
 
 	fill(0);
-	rect(100,100,50,80);
-	ellipse(100,60,50,50);
+	rect(70,100,50,80);
+	ellipse(70,60,50,50);
 
 	textFont(origin_font);
 	now_x = now_y = 0;
