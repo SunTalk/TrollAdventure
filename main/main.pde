@@ -156,7 +156,7 @@ void draw(){
 		vis_two();
 	}
 
-	if( die || win ){
+	if( ( die || win ) && gamemode != 0 ){
 		now_x = die_x;
 		now_y = die_y;
 	}
