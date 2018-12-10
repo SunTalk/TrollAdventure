@@ -26,9 +26,9 @@ void draw_two(){
 	{	
 		protagonist.stp = true;
 		if(pos.y < 1300 && pos.y > 900)
-			protagonist.tp(3595, 724-(1300-pos.y), true);
+			protagonist.tp(3595, pos.y-545, true);
 		else if(pos.y < 1600 && pos.y > 1300)
-			protagonist.tp(3595, 724-(1600-pos.y), true);
+			protagonist.tp(3595, pos.y-845, true);
 		else
 			protagonist.tp(3595, pos.y, true);
 
