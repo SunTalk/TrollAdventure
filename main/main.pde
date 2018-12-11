@@ -44,6 +44,7 @@ Serial port; // Create object from Serial class
 int val;
 boolean[] buttomCheck = new boolean[4];
 boolean ifArduino = false;
+boolean firstArduino = true;
 // ---------------------------------
 
 void setup(){
@@ -95,16 +96,16 @@ void setup(){
 
 	// ---------- for Arduino ----------
 
-	if( ifArduino ){
+	if( ifArduino &&  firstArduino ){
 
 		println(Serial.list());
-		String portName = Serial.list()[1];
+		String portName = Serial.list()[0];
 
 		port = new Serial(this, portName, 9600);
 
 		for(int i=0; i<4; i++)
 			buttomCheck[i] = false;
-		
+		firstArduino = false;
 	}
 
 	// ---------------------------------
