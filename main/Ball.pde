@@ -45,11 +45,11 @@ class Ball {
 	}
 
 	// Is the Ball ready for deletion?
-	boolean reStart(int y) {
+	boolean reStart() {
 		// Let's find the screen position of the Ball
 		Vec2 pos = box2d.getBodyPixelCoord(body);
 		// Is it off the bottom of the screen?
-		if ( pos.y > y ) {
+		if ( pos.y > 910 ) {
 			return true;
 		}
 		return false;
@@ -62,7 +62,7 @@ class Ball {
 		{
 			return true;
 		}
-		else if(pos.y > 900 && pos.y < 910)
+		else if(pos.y > 900 && pos.y < 950)
 		{
 			if( pos.x > 1600 || pos.x < 1100 )
 				return true;

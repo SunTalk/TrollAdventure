@@ -176,8 +176,12 @@ void draw(){
 	if( _jump_ == true ){
 		if( millis()-protagonist.njtime > 1500 ){
 			protagonist.jmp = true;
-			protagonist.jump(1000);
+			// protagonist.jump(1000);
 		}
+		ContactEdge onboard = protagonist.body.getContactList();
+		for(;onboard!=null;onboard=onboard.next)
+			protagonist.jump(1000);
+		protagonist.jmp = false;
 	}
 	if( _stop_ == true ){
 		if( millis()-protagonist.nstime > 3000 ){
@@ -186,15 +190,16 @@ void draw(){
 		ContactEdge stop = protagonist.body.getContactList();
 		for(;stop!=null;stop=stop.next)
 			protagonist.tp(pos.x,pos.y,false);
+		protagonist.stp = false;
 	}
 
 //---------------------------------------------
-	if( protagonist.reStart(910) && gamemode == 1 && die == false ){
+	if( protagonist.reStart() && gamemode == 1 && die == false ){
 		die_x = now_x;
 		die_y = now_y;
 		die = true;
 	}
-	else if( protagonist.reStart_two() && gamemode == 2 && die == false ){
+	if( protagonist.reStart_two() && gamemode == 2 && die == false ){
 		die_x = now_x;
 		die_y = now_y;
 		diedCount++;
@@ -301,6 +306,10 @@ void draw(){
 		textSize(80);
 		text("AGAIN", -now_x+530,-now_y+530);
 	}
-
+	// textSize(50);
+	// text(int(pos.x),pos.x,pos.y);
+	fill(0);
+	line(1600,0,1600,1200);
+	line(1100,0,1100,1200);
 }
 
