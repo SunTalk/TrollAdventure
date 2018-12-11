@@ -306,10 +306,6 @@ void draw(){
 		textSize(80);
 		text("AGAIN", -now_x+530,-now_y+530);
 	}
-	// textSize(50);
-	// text(int(pos.x),pos.x,pos.y);
-	fill(0);
-	line(1600,0,1600,1200);
-	line(1100,0,1100,1200);
+	
 }
 
