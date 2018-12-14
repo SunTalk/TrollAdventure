@@ -27,7 +27,7 @@ void draw_start(){
 	textFont(origin_font);
 	now_x = now_y = 0;
 
-	if( pos.x < 125 && pos.x > 75 && pos.y < 140 && pos.y > 60 ){
+	if( pos.x < 95 && pos.x > 45 && pos.y < 140 && pos.y > 60 ){
 		win = true;
 	}
 
