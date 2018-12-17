@@ -97,8 +97,9 @@ void draw_introduction(){// gamemode == 6
 		triangle(380,175,415,160,415,190);//left
 		triangle(520,175,485,160,485,190);//right
 		triangle(400,260,385,295,415,295);//jump
-		textSize(60);
-		text("S",390,395);
+		triangle(400,390,385,355,415,355);//stop
+		// textSize(60);
+		// text("S",390,395);
 	}
 	else if( introduction_page == 3 ){
 		fill(182);

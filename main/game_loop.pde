@@ -126,7 +126,7 @@ void keyPressed(){
 		if( keyCode == UP || key == ' ' ){
 			_jump_ = true;
 		}
-		if( key == 's' || key == 'S' ){
+		if( key == 's' || key == 'S' || keyCode == DOWN ){
 			_stop_ = true;
 		}
 
@@ -145,7 +145,7 @@ void keyReleased(){
 	if( keyCode == UP || key == ' ' ){
 		_jump_ = false;
 	}
-	if( key == 's' || key == 'S' ){
+	if( key == 's' || key == 'S' || keyCode == DOWN ){
 		_stop_ = false;
 	}
 	
