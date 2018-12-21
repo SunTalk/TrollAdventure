@@ -174,7 +174,7 @@ void draw(){
 		protagonist.action(-15);
 	}
 	if( _jump_ == true ){
-		if( millis()-protagonist.njtime > 1500 ){
+		if( millis()-protagonist.njtime > 1200 ){
 			protagonist.jmp = true;
 			// protagonist.jump(1000);
 		}
@@ -184,7 +184,7 @@ void draw(){
 		protagonist.jmp = false;
 	}
 	if( _stop_ == true ){
-		if( millis()-protagonist.nstime > 3000 ){
+		if( millis()-protagonist.nstime > 2000 ){
 			protagonist.stp = true;
 		}
 		ContactEdge stop = protagonist.body.getContactList();
@@ -243,12 +243,12 @@ void draw(){
 
 	
 //---------------------------------------------
-	jp_time = 1500 - millis() + protagonist.njtime;
+	jp_time = 1200 - millis() + protagonist.njtime;
 	if( jp_time < 0 )
 		jp_time = 0;
 	jp_time = jp_time/1000;
 
-	sp_time = 3000 - millis() + protagonist.nstime;
+	sp_time = 2000 - millis() + protagonist.nstime;
 	if( sp_time < 0 )
 		sp_time = 0;
 	sp_time = sp_time/1000;

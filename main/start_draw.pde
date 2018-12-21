@@ -91,8 +91,8 @@ void draw_introduction(){// gamemode == 6
 		rect(400,375,50,50);//stop
 		textSize(60);
 		text(": Basic move",550,200);
-		text(": jump          cd : 1.5 s",450,300);
-		text(": Stop          cd : 3.0 s",450,400);
+		text(": jump          cd : 1.2 s",450,300);
+		text(": Stop          cd : 2.0 s",450,400);
 		fill(255);
 		triangle(380,175,415,160,415,190);//left
 		triangle(520,175,485,160,485,190);//right
