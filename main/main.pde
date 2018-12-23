@@ -230,8 +230,8 @@ void draw(){
 		draw_introduction();
 	}
 	else if( gamemode == 1 ){
-		draw_one();
 		trap_one();
+		draw_one();
 	}
 	else if( gamemode == 2 ){
 		draw_two();
