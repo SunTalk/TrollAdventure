@@ -230,12 +230,12 @@ void draw(){
 		draw_introduction();
 	}
 	else if( gamemode == 1 ){
-		draw_one();
 		trap_one();
+		draw_one();
 	}
 	else if( gamemode == 2 ){
-		draw_two();
 		dis_boundary();
+		draw_two();
 	}
 
 	if( win == false && die == false )
@@ -308,4 +308,3 @@ void draw(){
 	}
 	
 }
-
