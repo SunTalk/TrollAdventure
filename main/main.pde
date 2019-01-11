@@ -49,6 +49,8 @@ boolean firstArduino = true;
 
 void setup(){
 
+	madepic();
+
 	start_interface = createFont("KarmaticArcade.otf",16);
 	origin_font = createFont("Regular.ttf",16);
 
@@ -262,6 +264,9 @@ void draw(){
 //---------------------------------------------
 	
 	if( win == true && gamemode == 0 ){
+
+		image(trans,-now_x,-now_y);
+
 		fill(255);
 		stroke(1);
 		rect(600,350,700,500);
@@ -274,6 +279,9 @@ void draw(){
 		text("BACK", 540,530);
 	}
 	if( win == true && gamemode != 0 ){
+
+		image(trans,-now_x,-now_y);
+
 		die_x = now_x;
 		die_y = now_y;
 		fill(255);
@@ -295,6 +303,9 @@ void draw(){
 	}
 	
 	if( die == true ){
+		
+		image(trans,-now_x,-now_y);
+
 		fill(255);
 		stroke(1);
 		strokeWeight(5);

@@ -34,6 +34,9 @@ void draw_start(){
 }
 
 void draw_choice(){//gamemode == 5
+	
+	image(trans,0,0);
+
 	fill(255);
 	stroke(1);
 	rect(600,350,700,500);
@@ -48,6 +51,9 @@ void draw_choice(){//gamemode == 5
 }
 
 void draw_introduction(){// gamemode == 6
+	
+	image(trans,0,0);
+
 	fill(255);
 	stroke(1);
 	rect(600,350,700,500);
